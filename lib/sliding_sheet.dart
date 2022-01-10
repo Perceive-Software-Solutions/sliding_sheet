@@ -1,4 +1,4 @@
-library sliding_sheet;
+library perceive_slidable;
 
 export 'src/sheet.dart';
 export 'src/sheet_listener_builder.dart';

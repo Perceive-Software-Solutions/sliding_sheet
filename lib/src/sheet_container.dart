@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:sliding_sheet/src/sheet_listener_builder.dart';
+import 'package:perceive_slidable/src/sheet_listener_builder.dart';
 
 import 'sheet.dart';
 

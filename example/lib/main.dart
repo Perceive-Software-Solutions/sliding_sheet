@@ -6,8 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
-import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:perceive_slidable/sliding_sheet.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -368,7 +367,7 @@ class _ExampleState extends State<Example> {
     final steps = [
       Step('Go to your pubspec.yaml file.', '2 seconds'),
       Step(
-          "Add the newest version of 'sliding_sheet' to your dependencies.", '5 seconds'),
+          "Add the newest version of 'perceive_slidable' to your dependencies.", '5 seconds'),
       Step("Run 'flutter packages get' in the terminal.", '4 seconds'),
       Step("Happy coding!", 'Forever'),
     ];

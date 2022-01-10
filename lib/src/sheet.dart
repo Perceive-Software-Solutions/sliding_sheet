@@ -29,68 +29,68 @@ typedef OnDismissPreventedCallback = void Function(bool backButton, bool backDro
 ///
 /// The [builder] parameter must not be null.
 class SlidingSheet extends StatefulWidget {
-  /// {@template sliding_sheet.builder}
+  /// {@template perceive_slidable.builder}
   /// The builder for the main content of the sheet that will be scrolled if
   /// the content is bigger than the height that the sheet can expand to.
   /// {@endtemplate}
   final SheetBuilder? builder;
 
-  /// {@template sliding_sheet.customBuilder}
+  /// {@template perceive_slidable.customBuilder}
   /// Allows you to supply your own custom sroll view. Useful for infinite lists
   /// that cannot be shrinkWrapped like long lists.
   /// {@endtemplate}
   final CustomSheetBuilder? customBuilder;
 
-  /// {@template sliding_sheet.headerBuilder}
+  /// {@template perceive_slidable.headerBuilder}
   /// The builder for a header that will be displayed at the top of the sheet
   /// that wont be scrolled.
   /// {@endtemplate}
   final SheetBuilder? headerBuilder;
 
-  /// {@template sliding_sheet.footerBuilder}
+  /// {@template perceive_slidable.footerBuilder}
   /// The builder for a footer that will be displayed at the bottom of the sheet
   /// that wont be scrolled.
   /// {@endtemplate}
   final SheetBuilder? footerBuilder;
 
-  /// {@template sliding_sheet.snapSpec}
+  /// {@template perceive_slidable.snapSpec}
   /// The [SnapSpec] that defines how the sheet should snap or if it should at all.
   /// {@endtemplate}
   final SnapSpec snapSpec;
 
-  /// {@template sliding_sheet.duration}
+  /// {@template perceive_slidable.duration}
   /// The base animation duration for the sheet. Swipes and flings may have a different duration.
   /// {@endtemplate}
   final Duration duration;
 
-  /// {@template sliding_sheet.color}
+  /// {@template perceive_slidable.color}
   /// The background color of the sheet.
   ///
   /// When not specified, the sheet will use `theme.cardColor`.
   /// {@endtemplate}
   final Color? color;
 
-  /// {@template sliding_sheet.backdropColor}
+  /// {@template perceive_slidable.backdropColor}
   /// The color of the shadow that is displayed behind the sheet.
   /// {@endtemplate}
   final Color? backdropColor;
 
-  /// {@template sliding_sheet.shadowColor}
+  /// {@template perceive_slidable.shadowColor}
   /// The color of the drop shadow of the sheet when [elevation] is > 0.
   /// {@endtemplate}
   final Color? shadowColor;
 
-  /// {@template sliding_sheet.elevation}
+  /// {@template perceive_slidable.elevation}
   /// The elevation of the sheet.
   /// {@endtemplate}
   final double elevation;
 
-  /// {@template sliding_sheet.padding}
+  /// {@template perceive_slidable.padding}
   /// The amount to inset the children of the sheet.
   /// {@endtemplate}
   final EdgeInsets? padding;
 
-  /// {@template sliding_sheet.avoidStatusBar}
+  /// {@template perceive_slidable.avoidStatusBar}
   /// If true, adds the top padding returned by
   /// `MediaQuery.of(context).viewPadding.top` to the [padding] when taking
   /// up the full screen.
@@ -100,7 +100,7 @@ class SlidingSheet extends StatefulWidget {
   /// {@endtemplate}
   final bool avoidStatusBar;
 
-  /// {@template sliding_sheet.margin}
+  /// {@template perceive_slidable.margin}
   /// The amount of empty space surrounding the sheet.
   /// {@endtemplate}
   final EdgeInsets? margin;
@@ -108,17 +108,17 @@ class SlidingSheet extends StatefulWidget {
   /// The amount of empty space sourrounding the sheet when expanded.
   final EdgeInsets? marginWhenExpanded;
 
-  /// {@template sliding_sheet.border}
+  /// {@template perceive_slidable.border}
   /// A border that will be drawn around the sheet.
   /// {@endtemplate}
   final Border? border;
 
-  /// {@template sliding_sheet.cornerRadius}
+  /// {@template perceive_slidable.cornerRadius}
   /// The radius of the top corners of this sheet.
   /// {@endtemplate}
   final double cornerRadius;
 
-  /// {@template sliding_sheet.cornerRadiusOnFullscreen}
+  /// {@template perceive_slidable.cornerRadiusOnFullscreen}
   /// The radius of the top corners of this sheet when expanded to fullscreen.
   ///
   /// This parameter can be used to easily implement the common Material
@@ -130,23 +130,23 @@ class SlidingSheet extends StatefulWidget {
   /// If true, will collapse the sheet when the sheets backdrop was tapped.
   final bool closeOnBackdropTap;
 
-  /// {@template sliding_sheet.listener}
+  /// {@template perceive_slidable.listener}
   /// A callback that will be invoked when the sheet gets dragged or scrolled
   /// with current state information.
   /// {@endtemplate}
   final SheetListener? listener;
 
-  /// {@template sliding_sheet.controller}
+  /// {@template perceive_slidable.controller}
   /// A controller to control the state of the sheet.
   /// {@endtemplate}
   final SheetController? controller;
 
-  /// {@template sliding_sheet.scrollSpec}
+  /// {@template perceive_slidable.scrollSpec}
   /// The [ScrollSpec] of the containing ScrollView.
   /// {@endtemplate}
   final ScrollSpec scrollSpec;
 
-  /// {@template sliding_sheet.maxWidth}
+  /// {@template perceive_slidable.maxWidth}
   /// The maximum width of the sheet.
   ///
   /// Usually set for large screens. By default the [SlidingSheet]
@@ -154,20 +154,20 @@ class SlidingSheet extends StatefulWidget {
   /// {@endtemplate}
   final double maxWidth;
 
-  /// {@template sliding_sheet.maxWidth}
+  /// {@template perceive_slidable.maxWidth}
   /// The minimum height of the sheet of the child returned by the `builder`.
   ///
   /// By default, the sheet sizes itself as big as its child.
   /// {@endtemplate}
   final double? minHeight;
 
-  /// {@template sliding_sheet.closeSheetOnBackButtonPressed}
+  /// {@template perceive_slidable.closeSheetOnBackButtonPressed}
   /// If true, closes the sheet when it is open and prevents the route
   /// from being popped.
   /// {@endtemplate}
   final bool closeSheetOnBackButtonPressed;
 
-  /// {@template sliding_sheet.isBackDropInteractable}
+  /// {@template perceive_slidable.isBackDropInteractable}
   /// If true, the backDrop will also be interactable so any gesture
   /// that is applied to the backDrop will be delegated to the sheet
   /// itself.
@@ -180,7 +180,7 @@ class SlidingSheet extends StatefulWidget {
   /// setting the [parallaxSpec] parameter.
   final Widget? body;
 
-  /// {@template sliding_sheet.parallaxSpec}
+  /// {@template perceive_slidable.parallaxSpec}
   /// A [ParallaxSpec] to create a parallax effect.
   ///
   /// The parallax effect is an effect that appears when different layers of backgrounds
@@ -189,7 +189,7 @@ class SlidingSheet extends StatefulWidget {
   /// {@endtemplate}
   final ParallaxSpec? parallaxSpec;
 
-  /// {@template sliding_sheet.axisAlignment}
+  /// {@template perceive_slidable.axisAlignment}
   /// How to align the sheet on the horizontal axis when the available width is bigger
   /// than the `maxWidth` of the sheet.
   ///
@@ -199,32 +199,32 @@ class SlidingSheet extends StatefulWidget {
   /// {@endTemplate}
   final double axisAlignment;
 
-  /// {@template sliding_sheet.extendBody}
+  /// {@template perceive_slidable.extendBody}
   /// Whether to extend the scrollable body of the sheet under
   /// header and/or footer.
   /// {@endTemplate}
   final bool extendBody;
 
-  /// {@template sliding_sheet.liftOnScrollHeaderElevation}
+  /// {@template perceive_slidable.liftOnScrollHeaderElevation}
   /// The elevation of the header when the content scrolls under it.
   /// {@endTemplate}
   final double liftOnScrollHeaderElevation;
 
-  /// {@template sliding_sheet.liftOnScrollFooterElevation}
+  /// {@template perceive_slidable.liftOnScrollFooterElevation}
   /// The elevation of the footer when there content scrolls under it.
   /// {@endTemplate}
   final double liftOnScrollFooterElevation;
 
   // * SlidingSheetDialog fields
 
-  /// {@template sliding_sheet.isDismissable}
+  /// {@template perceive_slidable.isDismissable}
   /// If false, the `SlidingSheetDialog` will not be dismissable.
   ///
   /// That means that the user wont be able to close the sheet using gestures or back button.
   /// {@endtemplate}
   final bool isDismissable;
 
-  /// {@template sliding_sheet.onDismissPrevented}
+  /// {@template perceive_slidable.onDismissPrevented}
   /// A callback that gets invoked when a user tried to dismiss the dialog
   /// while [isDimissable] is set to `true`.
   ///

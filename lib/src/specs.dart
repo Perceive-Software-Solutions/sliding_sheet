@@ -185,7 +185,7 @@ class ScrollSpec {
   }
 }
 
-/// {@macro sliding_sheet.parallaxSpec}
+/// {@macro perceive_slidable.parallaxSpec}
 class ParallaxSpec {
   /// If true, the parallax effect will be applied
   /// to the body of the [SlidingSheet].
