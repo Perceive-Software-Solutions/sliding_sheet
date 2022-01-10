@@ -238,6 +238,8 @@ class SlidingSheet extends StatefulWidget {
 
   final SystemUiOverlayStyle? systemUiOverlayStyleWhenExpanded;
 
+  final SlidingSheetStateController? slidingSheetStateController;
+
   /// Creates a sheet than can be dragged and scrolled in a single gesture to be
   /// placed inside you widget tree.
   SlidingSheet({
@@ -248,6 +250,7 @@ class SlidingSheet extends StatefulWidget {
     this.footerBuilder,
     this.snapSpec = const SnapSpec(),
     this.duration = const Duration(milliseconds: 1000),
+    this.slidingSheetStateController,
     this.color,
     this.backdropColor,
     this.shadowColor = Colors.black54,
@@ -473,6 +476,10 @@ class _SlidingSheetState extends State<SlidingSheet> with TickerProviderStateMix
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
+    if(widget.slidingSheetStateController != null){
+      widget.slidingSheetStateController!._bind(this);
+    }
 
     _updateSnappingsAndExtent();
 
@@ -909,7 +916,7 @@ class _SlidingSheetState extends State<SlidingSheet> with TickerProviderStateMix
                 elevateWhen: (state) => isScrollable && !state.isAtTop,
                 child: SizeChangedLayoutNotifier(
                   key: headerKey,
-                  child: _delegateInteractions(
+                  child: delegateInteractions(
                     widget.headerBuilder!(context, state),
                   ),
                 ),
@@ -924,7 +931,7 @@ class _SlidingSheetState extends State<SlidingSheet> with TickerProviderStateMix
                 elevateWhen: (state) => !state.isCollapsed && !state.isAtBottom,
                 child: SizeChangedLayoutNotifier(
                   key: footerKey,
-                  child: _delegateInteractions(
+                  child: delegateInteractions(
                     widget.footerBuilder!(context, state),
                   ),
                 ),
@@ -1109,7 +1116,7 @@ class _SlidingSheetState extends State<SlidingSheet> with TickerProviderStateMix
         // see: https://github.com/BendixMa/sliding-sheet/issues/30
         if (opacity >= 0.05 || didStartDragWhenNotCollapsed) {
           if (widget.isBackdropInteractable) {
-            return _delegateInteractions(backDrop,
+            return delegateInteractions(backDrop,
                 onTap: widget.closeOnBackdropTap ? onTap : null);
           } else if (widget.closeOnBackdropTap) {
             return GestureDetector(
@@ -1125,7 +1132,7 @@ class _SlidingSheetState extends State<SlidingSheet> with TickerProviderStateMix
     );
   }
 
-  Widget _delegateInteractions(Widget child, {VoidCallback? onTap}) {
+  Widget delegateInteractions(Widget child, {VoidCallback? onTap}) {
     var start = 0.0, end = 0.0;
 
     void onDragEnd([double velocity = 0.0]) {
@@ -1344,4 +1351,25 @@ class SheetController {
   /// The current [SheetState] of this [SlidingSheet].
   SheetState? get state => _state;
   SheetState? _state;
+}
+
+/// Notifies [SwipePollCard] when the frames have been loaded in
+/// Is used to set the duration and frame count for the [GifAnimationController]
+class SlidingSheetStateController extends ChangeNotifier{
+  
+  late _SlidingSheetState? _state;
+
+  SlidingSheetStateController();
+
+  ///Binds the controller to the state
+  void _bind(_SlidingSheetState bind) => _state = bind;
+
+  Widget? delegateInteractions(Widget child) => _state != null ? _state!.delegateInteractions(child) : null;
+
+  //Disposes of the controller
+  @override
+  void dispose() {
+    _state = null;
+    super.dispose();
+  }
 }
